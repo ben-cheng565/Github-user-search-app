@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import http from "../../common/http";
 import BasicInfo from "./BasicInfo";
 import TopRepos from "./TopRepos";
 
-const SearchResult = () => {
+const SearchResult = ({ url }) => {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    if (url) {
+      http
+        .get(url)
+        .then((res) => {
+          setUserData(res.data);
+
+          console.log(res.data);
+        })
+        .catch(() => {});
+    }
+  }, [url]);
+
   return (
-    <SearchResultContainer>
-      <BasicInfo />
-      <TopRepos />
-    </SearchResultContainer>
+    url && (
+      <SearchResultContainer>
+        <BasicInfo userData={userData} />
+        <TopRepos repoUrl={userData?.repos_url} />
+      </SearchResultContainer>
+    )
   );
 };
 

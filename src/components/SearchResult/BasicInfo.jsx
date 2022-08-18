@@ -2,14 +2,15 @@ import React from "react";
 import { Avatar } from "antd";
 import styled from "styled-components";
 
-const BasicInfo = () => {
+const BasicInfo = ({ userData }) => {
   return (
     <BasicInfoContainer>
-      <Avatar size={"large"} />
+      <Avatar size={"large"} src={userData?.avatar_url} />
       <div>
-        <strong>username</strong>
+        <strong>{userData?.name ?? userData?.login}</strong>
         <div>
-          <strong>20</strong> followers | <strong>20</strong> repositories
+          <strong>{userData?.followers}</strong> followers |{" "}
+          <strong>{userData?.public_repos}</strong> repositories
         </div>
       </div>
     </BasicInfoContainer>
