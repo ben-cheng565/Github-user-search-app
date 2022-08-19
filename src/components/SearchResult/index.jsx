@@ -19,7 +19,7 @@ const SearchResult = ({ url }) => {
     userData && (
       <SearchResultContainer>
         <BasicInfo userData={userData} />
-        <TopRepos repoUrl={userData?.repos_url} />
+        <TopRepos repoUrl={userData.repos_url} />
       </SearchResultContainer>
     )
   );

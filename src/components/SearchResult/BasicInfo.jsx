@@ -5,12 +5,12 @@ import styled from "styled-components";
 const BasicInfo = ({ userData }) => {
   return (
     <BasicInfoContainer>
-      <Avatar size={"large"} src={userData?.avatar_url} />
+      <Avatar size={"large"} src={userData.avatar_url} />
       <div>
-        <strong>{userData?.name ?? userData?.login}</strong>
+        <strong>{userData.login}</strong>
         <div>
-          <strong>{userData?.followers}</strong> followers |{" "}
-          <strong>{userData?.public_repos}</strong> repositories
+          <strong>{userData.followers}</strong> followers |{" "}
+          <strong>{userData.public_repos}</strong> repositories
         </div>
       </div>
     </BasicInfoContainer>
