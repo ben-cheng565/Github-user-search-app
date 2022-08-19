@@ -1,7 +1,6 @@
 import React from "react";
 import Search from "antd/lib/input/Search";
 import styled from "styled-components";
-import http from "../../common/http";
 
 const SearchInput = ({ setUsername }) => {
   const onSearch = (value) => setUsername(value);

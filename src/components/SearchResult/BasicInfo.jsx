@@ -19,6 +19,7 @@ const BasicInfo = ({ userData }) => {
 
 const BasicInfoContainer = styled.div`
   display: flex;
+  padding-top: 20px;
 
   > div {
     display: flex;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import http from "../../common/http";
+import { fetcher } from "../../common/http";
 import BasicInfo from "./BasicInfo";
 import TopRepos from "./TopRepos";
 
@@ -9,19 +9,14 @@ const SearchResult = ({ url }) => {
 
   useEffect(() => {
     if (url) {
-      http
-        .get(url)
-        .then((res) => {
-          setUserData(res.data);
-
-          console.log(res.data);
-        })
-        .catch(() => {});
+      fetcher(url)
+        .then((data) => setUserData(data))
+        .catch(() => setUserData(null));
     }
   }, [url]);
 
   return (
-    url && (
+    userData && (
       <SearchResultContainer>
         <BasicInfo userData={userData} />
         <TopRepos repoUrl={userData?.repos_url} />
@@ -38,7 +33,7 @@ const SearchResultContainer = styled.div`
   margin-right: auto;
   margin-top: 50px;
   width: 30em;
-  height: 60vh;
+  height: 50vh;
   border: 1px solid;
 `;
 

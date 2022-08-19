@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import http from "../../common/http";
+import { fetcher } from "../../common/http";
 import { sortRepos } from "../../common/utils";
 
 const TopRepos = ({ repoUrl }) => {
@@ -8,27 +8,30 @@ const TopRepos = ({ repoUrl }) => {
 
   useEffect(() => {
     if (repoUrl) {
-      http
-        .get(repoUrl)
-        .then((res) => {
-          setRepos(sortRepos(res.data));
-        })
-        .catch(() => {});
+      fetcher(repoUrl)
+        .then((data) => setRepos(sortRepos(data)))
+        .catch(() => setRepos(null));
     }
   }, [repoUrl]);
 
   return (
     <TopReposContainer>
-      <h3>Top 4 Repositories</h3>
-      <ul>
-        {repos?.slice(0, 4).map((repo, i) => (
-          <li key={i}>
-            <a href={repo.html_url} target="_blank">
-              {repo.name}
-            </a>
-          </li>
-        ))}
-      </ul>
+      {repos ? (
+        <>
+          <h3>Top 4 Repositories</h3>
+          <ul>
+            {repos?.slice(0, 4).map((repo, i) => (
+              <li key={i}>
+                <a href={repo.html_url} target="_blank">
+                  {repo.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <h4>No Repositories</h4>
+      )}
     </TopReposContainer>
   );
 };
@@ -36,7 +39,7 @@ const TopRepos = ({ repoUrl }) => {
 const TopReposContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 30px;
+  padding-top: 40px;
 `;
 
 export default TopRepos;
