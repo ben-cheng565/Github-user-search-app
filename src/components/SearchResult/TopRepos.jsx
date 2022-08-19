@@ -18,7 +18,7 @@ const TopRepos = ({ repoUrl }) => {
     <TopReposContainer>
       {repos ? (
         <>
-          <h3>Top 4 Repositories</h3>
+          <span>Top 4 Repositories</span>
           <ul>
             {repos?.slice(0, 4).map((repo, i) => (
               <li key={i}>
@@ -30,7 +30,7 @@ const TopRepos = ({ repoUrl }) => {
           </ul>
         </>
       ) : (
-        <h4>No Repositories</h4>
+        <span>No Repositories</span>
       )}
     </TopReposContainer>
   );
@@ -40,6 +40,10 @@ const TopReposContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 40px;
+
+  > span {
+    font-size: 18px;
+  }
 `;
 
 export default TopRepos;

@@ -33,7 +33,7 @@ const SearchResultContainer = styled.div`
   margin-right: auto;
   margin-top: 50px;
   width: 30em;
-  height: 50vh;
+  height: 25em;
   border: 1px solid;
 `;
 

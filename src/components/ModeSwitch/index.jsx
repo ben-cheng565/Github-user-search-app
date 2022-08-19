@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Switch } from "antd";
+import { theme } from "../../constants/styles";
 
-const ModeSwitch = () => {
+const ModeSwitch = ({ themeMode, setThemeMode }) => {
   const handleSwitchChange = () => {
-    console.log("adfasd");
+    setThemeMode((prev) => (prev.label === "light" ? theme.dark : theme.light));
   };
 
   return (
@@ -12,7 +13,7 @@ const ModeSwitch = () => {
       <Switch
         checkedChildren="Light"
         unCheckedChildren="Dark"
-        defaultChecked
+        defaultChecked={themeMode.label === "light"}
         onChange={handleSwitchChange}
       />
     </ModeSwitchContainer>
